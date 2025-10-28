@@ -1,0 +1,592 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class User
+    {
+        public string Username { get; set; }
+        public string Email { get; set; }
+
+        // Writeonly свойство
+        private string password;
+        public string Password
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.Length >= 6)
+                {
+                    password = value;
+                    Console.WriteLine("Пароль успешно установлен");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: Пароль должен содержать минимум 6 символов");
+                }
+            }
+        }
+
+        public User(string username, string email)
+        {
+            Username = username;
+            Email = email;
+        }
+
+        public bool VerifyPassword(string inputPassword)
+        {
+            return password == inputPassword;
+        }
+
+        public override string ToString() => $"Пользователь: {Username}, Email: {Email}";
+    }
+
+    class BankAccount
+    {
+        public string AccountNumber { get; set; }
+        public string AccountHolder { get; set; }
+        public decimal Balance { get; set; }
+
+        // Writeonly свойство
+        private string pin;
+        public string PIN
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.Length == 4 && int.TryParse(value, out _))
+                {
+                    pin = value;
+                    Console.WriteLine("PIN-код успешно установлен");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: PIN должен состоять из 4 цифр");
+                }
+            }
+        }
+
+        public BankAccount(string accountNumber, string accountHolder, decimal balance)
+        {
+            AccountNumber = accountNumber;
+            AccountHolder = accountHolder;
+            Balance = balance;
+        }
+
+        public bool VerifyPIN(string inputPIN)
+        {
+            return pin == inputPIN;
+        }
+
+        public bool Withdraw(decimal amount, string inputPIN)
+        {
+            if (VerifyPIN(inputPIN) && amount > 0 && amount <= Balance)
+            {
+                Balance -= amount;
+                return true;
+            }
+            return false;
+        }
+
+        public override string ToString() => $"Банковский счёт: {AccountNumber}, Владелец: {AccountHolder}, Баланс: {Balance:C}";
+    }
+
+    class SecureDocument
+    {
+        public string DocumentName { get; set; }
+        public string Content { get; set; }
+        public bool IsEncrypted { get; private set; }
+
+        // Writeonly свойство
+        private string encryptionKey;
+        public string EncryptionKey
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.Length >= 8)
+                {
+                    encryptionKey = value;
+                    IsEncrypted = true;
+                    Console.WriteLine("Ключ шифрования установлен, документ зашифрован");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: Ключ шифрования должен содержать минимум 8 символов");
+                }
+            }
+        }
+
+        public SecureDocument(string documentName, string content)
+        {
+            DocumentName = documentName;
+            Content = content;
+            IsEncrypted = false;
+        }
+
+        public string DecryptDocument(string key)
+        {
+            if (encryptionKey == key)
+            {
+                IsEncrypted = false;
+                return $"Расшифрованное содержимое: {Content}";
+            }
+            return "Неверный ключ шифрования";
+        }
+
+        public override string ToString() => $"Документ: {DocumentName}, Зашифрован: {(IsEncrypted ? "Да" : "Нет")}";
+    }
+
+    class Account
+    {
+        public string Username { get; set; }
+        public string ServiceName { get; set; }
+        public DateTime CreatedAt { get; private set; }
+
+        // Writeonly свойство
+        private string token;
+        public string Token
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.Length >= 10)
+                {
+                    token = value;
+                    Console.WriteLine("Токен доступа успешно установлен");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: Токен должен содержать минимум 10 символов");
+                }
+            }
+        }
+
+        public Account(string username, string serviceName)
+        {
+            Username = username;
+            ServiceName = serviceName;
+            CreatedAt = DateTime.Now;
+        }
+
+        public bool ValidateToken(string inputToken)
+        {
+            return token == inputToken;
+        }
+
+        public override string ToString() => $"Аккаунт: {Username}, Сервис: {ServiceName}, Создан: {CreatedAt:dd.MM.yyyy}";
+    }
+
+    class Logger
+    {
+        public string ServiceName { get; set; }
+        public string LogLevel { get; set; }
+
+        // Writeonly свойство
+        private string apiKey;
+        public string ApiKey
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.StartsWith("sk-"))
+                {
+                    apiKey = value;
+                    Console.WriteLine("API ключ успешно установлен");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: API ключ должен начинаться с 'sk-'");
+                }
+            }
+        }
+
+        public Logger(string serviceName, string logLevel = "INFO")
+        {
+            ServiceName = serviceName;
+            LogLevel = logLevel;
+        }
+
+        public void Log(string message)
+        {
+            if (!string.IsNullOrEmpty(apiKey))
+            {
+                Console.WriteLine($"[{LogLevel}] {ServiceName}: {message} (отправлено через API)");
+            }
+            else
+            {
+                Console.WriteLine($"[{LogLevel}] {ServiceName}: {message} (локальный лог)");
+            }
+        }
+
+        public override string ToString() => $"Логгер: {ServiceName}, Уровень: {LogLevel}";
+    }
+
+    class EmailService
+    {
+        public string SMTPHost { get; set; }
+        public int SMTPPort { get; set; }
+        public string Username { get; set; }
+
+        // Writeonly свойство
+        private string smtpPassword;
+        public string SMTPPassword
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    smtpPassword = value;
+                    Console.WriteLine("SMTP пароль установлен");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: SMTP пароль не может быть пустым");
+                }
+            }
+        }
+
+        public EmailService(string host, int port, string username)
+        {
+            SMTPHost = host;
+            SMTPPort = port;
+            Username = username;
+        }
+
+        public bool SendEmail(string to, string subject, string body)
+        {
+            if (!string.IsNullOrEmpty(smtpPassword))
+            {
+                Console.WriteLine($"Отправка email через {SMTPHost}:{SMTPPort}");
+                Console.WriteLine($"От: {Username}");
+                Console.WriteLine($"Кому: {to}");
+                Console.WriteLine($"Тема: {subject}");
+                Console.WriteLine($"Сообщение: {body}");
+                Console.WriteLine("Email успешно отправлен!");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: SMTP пароль не установлен");
+                return false;
+            }
+        }
+
+        public override string ToString() => $"Email сервис: {SMTPHost}:{SMTPPort}, Пользователь: {Username}";
+    }
+
+    class SecureConnection
+    {
+        public string ServerName { get; set; }
+        public string Protocol { get; set; }
+
+        // Writeonly свойство
+        private string connectionString;
+        public string ConnectionString
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.Contains("://"))
+                {
+                    connectionString = value;
+                    Console.WriteLine("Строка подключения установлена");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: Неверный формат строки подключения");
+                }
+            }
+        }
+
+        public SecureConnection(string serverName, string protocol = "https")
+        {
+            ServerName = serverName;
+            Protocol = protocol;
+        }
+
+        public bool Connect()
+        {
+            if (!string.IsNullOrEmpty(connectionString))
+            {
+                Console.WriteLine($"Установлено безопасное подключение к {ServerName}");
+                Console.WriteLine($"Используется протокол: {Protocol}");
+                Console.WriteLine($"Строка подключения: [скрыто]");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: Строка подключения не установлена");
+                return false;
+            }
+        }
+
+        public override string ToString() => $"Безопасное подключение: {Protocol}://{ServerName}";
+    }
+
+    class Authenticator
+    {
+        public string AppName { get; set; }
+        public string UserId { get; set; }
+
+        // Writeonly свойство
+        private string secret;
+        public string Secret
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.Length >= 16)
+                {
+                    secret = value;
+                    Console.WriteLine("Секретный ключ установлен");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: Секретный ключ должен содержать минимум 16 символов");
+                }
+            }
+        }
+
+        public Authenticator(string appName, string userId)
+        {
+            AppName = appName;
+            UserId = userId;
+        }
+
+        public string GenerateTOTP()
+        {
+            if (!string.IsNullOrEmpty(secret))
+            {
+                // Генерация простого 6-значного кода (в реальности использовался бы сложный алгоритм)
+                Random rnd = new Random();
+                string code = rnd.Next(100000, 999999).ToString();
+                Console.WriteLine($"Сгенерирован TOTP код для {AppName}: {code}");
+                return code;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: Секретный ключ не установлен");
+                return null;
+            }
+        }
+
+        public bool VerifyCode(string inputCode)
+        {
+            // В реальном приложении здесь была бы сложная логика верификации
+            return !string.IsNullOrEmpty(inputCode) && inputCode.Length == 6;
+        }
+
+        public override string ToString() => $"Аутентификатор: {AppName}, Пользователь: {UserId}";
+    }
+
+    class PaymentService
+    {
+        public string MerchantId { get; set; }
+        public string Currency { get; set; }
+
+        // Writeonly свойство
+        private string creditCard;
+        public string CreditCard
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.Replace(" ", "").Length == 16)
+                {
+                    creditCard = value;
+                    Console.WriteLine("Данные кредитной карты установлены");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: Неверный формат номера кредитной карты");
+                }
+            }
+        }
+
+        public PaymentService(string merchantId, string currency = "RUB")
+        {
+            MerchantId = merchantId;
+            Currency = currency;
+        }
+
+        public bool ProcessPayment(decimal amount)
+        {
+            if (!string.IsNullOrEmpty(creditCard))
+            {
+                Console.WriteLine($"Обработка платежа на сумму {amount} {Currency}");
+                Console.WriteLine($"Мерчант: {MerchantId}");
+                Console.WriteLine($"Используемая карта: **** **** **** {creditCard.Substring(creditCard.Length - 4)}");
+                Console.WriteLine("Платёж успешно обработан!");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: Данные кредитной карты не установлены");
+                return false;
+            }
+        }
+
+        public override string ToString() => $"Платежный сервис: {MerchantId}, Валюта: {Currency}";
+    }
+
+    class VPNClient
+    {
+        public string ServerAddress { get; set; }
+        public string Protocol { get; set; }
+
+        // Writeonly свойство
+        private string vpnPassword;
+        public string VPNPassword
+        {
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.Length >= 8)
+                {
+                    vpnPassword = value;
+                    Console.WriteLine("VPN пароль установлен");
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: VPN пароль должен содержать минимум 8 символов");
+                }
+            }
+        }
+
+        public VPNClient(string serverAddress, string protocol = "OpenVPN")
+        {
+            ServerAddress = serverAddress;
+            Protocol = protocol;
+        }
+
+        public bool Connect(string username)
+        {
+            if (!string.IsNullOrEmpty(vpnPassword))
+            {
+                Console.WriteLine($"Установка VPN подключения к {ServerAddress}");
+                Console.WriteLine($"Протокол: {Protocol}");
+                Console.WriteLine($"Пользователь: {username}");
+                Console.WriteLine("VPN подключение успешно установлено!");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: VPN пароль не установлен");
+                return false;
+            }
+        }
+
+        public void Disconnect()
+        {
+            Console.WriteLine("VPN подключение разорвано");
+        }
+
+        public override string ToString() => $"VPN клиент: {ServerAddress}, Протокол: {Protocol}";
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите число от 1 до 10 для тестирования классов с writeonly свойствами:");
+            Console.WriteLine("1: User\n2: BankAccount\n3: SecureDocument\n4: Account\n5: Logger");
+            Console.WriteLine("6: EmailService\n7: SecureConnection\n8: Authenticator\n9: PaymentService\n10: VPNClient");
+
+            int choice = int.Parse(Console.ReadLine() ?? "0");
+
+            switch (choice)
+            {
+                case 1:
+                    var user = new User("ivanov", "ivanov@example.com");
+                    Console.WriteLine(user);
+                    user.Password = "123"; // Слишком короткий пароль
+                    user.Password = "securepassword123";
+                    Console.WriteLine($"Проверка пароля 'wrong': {user.VerifyPassword("wrong")}");
+                    Console.WriteLine($"Проверка пароля 'securepassword123': {user.VerifyPassword("securepassword123")}");
+                    break;
+
+                case 2:
+                    var account = new BankAccount("40817810099910004312", "Иван Иванов", 50000m);
+                    Console.WriteLine(account);
+                    account.PIN = "123"; // Неверная длина
+                    account.PIN = "abcd"; // Не цифры
+                    account.PIN = "1234";
+                    Console.WriteLine($"Снятие 10000 с правильным PIN: {account.Withdraw(10000, "1234")}");
+                    Console.WriteLine($"Снятие 10000 с неправильным PIN: {account.Withdraw(10000, "9999")}");
+                    Console.WriteLine(account);
+                    break;
+
+                case 3:
+                    var document = new SecureDocument("Конфиденциальный отчет", "Секретные данные...");
+                    Console.WriteLine(document);
+                    document.EncryptionKey = "short";
+                    document.EncryptionKey = "verylongencryptionkey123";
+                    Console.WriteLine(document);
+                    Console.WriteLine(document.DecryptDocument("wrongkey"));
+                    Console.WriteLine(document.DecryptDocument("verylongencryptionkey123"));
+                    break;
+
+                case 4:
+                    var serviceAccount = new Account("alexey", "Cloud Storage");
+                    Console.WriteLine(serviceAccount);
+                    serviceAccount.Token = "short";
+                    serviceAccount.Token = "verylongtoken1234567890";
+                    Console.WriteLine($"Проверка токена 'wrong': {serviceAccount.ValidateToken("wrong")}");
+                    Console.WriteLine($"Проверка токена 'verylongtoken1234567890': {serviceAccount.ValidateToken("verylongtoken1234567890")}");
+                    break;
+
+                case 5:
+                    var logger = new Logger("MyApp", "DEBUG");
+                    Console.WriteLine(logger);
+                    logger.ApiKey = "invalid-key";
+                    logger.ApiKey = "sk-1234567890abcdef";
+                    logger.Log("Тестовое сообщение");
+                    break;
+
+                case 6:
+                    var emailService = new EmailService("smtp.example.com", 587, "noreply@example.com");
+                    Console.WriteLine(emailService);
+                    emailService.SMTPPassword = "";
+                    emailService.SMTPPassword = "smtp_password_123";
+                    emailService.SendEmail("client@example.com", "Тестовое письмо", "Это тестовое сообщение");
+                    break;
+
+                case 7:
+                    var connection = new SecureConnection("api.bank.com", "https");
+                    Console.WriteLine(connection);
+                    connection.ConnectionString = "invalid";
+                    connection.ConnectionString = "https://username:password@api.bank.com:443/database";
+                    connection.Connect();
+                    break;
+
+                case 8:
+                    var authenticator = new Authenticator("Google Authenticator", "user123");
+                    Console.WriteLine(authenticator);
+                    authenticator.Secret = "short";
+                    authenticator.Secret = "verylongsecretkey1234567890";
+                    authenticator.GenerateTOTP();
+                    Console.WriteLine($"Проверка кода '123456': {authenticator.VerifyCode("123456")}");
+                    break;
+
+                case 9:
+                    var payment = new PaymentService("MERCHANT-001", "RUB");
+                    Console.WriteLine(payment);
+                    payment.CreditCard = "1234"; // Неверная длина
+                    payment.CreditCard = "4111 1111 1111 1111";
+                    payment.ProcessPayment(1500.50m);
+                    break;
+
+                case 10:
+                    var vpn = new VPNClient("vpn.company.com", "OpenVPN");
+                    Console.WriteLine(vpn);
+                    vpn.VPNPassword = "short";
+                    vpn.VPNPassword = "strongvpnpassword123";
+                    vpn.Connect("employee123");
+                    vpn.Disconnect();
+                    break;
+
+                default:
+                    Console.WriteLine("Неверный выбор.");
+                    break;
+            }
+
+            Console.WriteLine("\nНажмите любую клавишу для выхода...");
+            Console.ReadKey();
+        }
+    }
+}
