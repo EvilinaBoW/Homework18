@@ -1,0 +1,279 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class Animal
+    {
+        public void MakeSound() => Console.WriteLine("Some sound");
+    }
+
+    class Car
+    {
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public Car(string brand, string model, int year)
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+        }
+        public override string ToString() => $"{Brand} {Model} {Year}";
+    }
+
+    class Person
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public Person(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+        public override string ToString() => $"Name: {Name}, Age: {Age}";
+    }
+
+    class Rectangle
+    {
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public Rectangle(double width, double height)
+        {
+            Width = width;
+            Height = height;
+        }
+        public override string ToString() => $"Rectangle: {Width} x {Height}";
+    }
+
+    class Student
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public Student(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+        public override string ToString() => $"Student Name: {Name}, Age: {Age}";
+    }
+
+    class Book
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int Pages { get; set; }
+        public Book(string title, string author, int pages)
+        {
+            Title = title;
+            Author = author;
+            Pages = pages;
+        }
+        public override string ToString() => $"{Title} by {Author}, {Pages} pages";
+    }
+
+    class Circle
+    {
+        public double Radius { get; set; }
+        public Circle(double radius)
+        {
+            Radius = radius;
+        }
+        public double Area() => Math.PI * Radius * Radius;
+        public override string ToString() => $"Circle with radius {Radius}";
+    }
+
+    class BankAccount
+    {
+        public decimal Balance { get; private set; }
+        public BankAccount(decimal initialBalance)
+        {
+            Balance = initialBalance;
+        }
+        public void Deposit(decimal amount)
+        {
+            if (amount > 0) Balance += amount;
+        }
+        public void Withdraw(decimal amount)
+        {
+            if (amount > 0 && amount <= Balance) Balance -= amount;
+        }
+        public override string ToString() => $"Balance: {Balance:C}";
+    }
+
+    class Temperature
+    {
+        private double celsius;
+        public double Celsius
+        {
+            get => celsius;
+            set => celsius = value;
+        }
+        public Temperature(double celsius) { this.celsius = celsius; }
+        public double Fahrenheit => celsius * 9 / 5 + 32;
+        public override string ToString() => $"{celsius} °C / {Fahrenheit} °F";
+    }
+
+    class Time
+    {
+        public int Hours { get; set; }
+        public int Minutes { get; set; }
+        public int Seconds { get; set; }
+        public Time(int hours, int minutes, int seconds)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
+        }
+        public override string ToString() => $"{Hours:00}:{Minutes:00}:{Seconds:00}";
+    }
+
+    class Point
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Z { get; set; }
+        public Point(double x, double y, double z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
+        public override string ToString() => $"Point({X}, {Y}, {Z})";
+    }
+
+    class Color
+    {
+        public int R { get; set; }
+        public int G { get; set; }
+        public int B { get; set; }
+        public Color(int r, int g, int b)
+        {
+            R = r;
+            G = g;
+            B = b;
+        }
+        public override string ToString() => $"Color(R={R}, G={G}, B={B})";
+    }
+
+    class Email
+    {
+        public string Address { get; set; }
+        public Email(string address)
+        {
+            Address = address;
+        }
+        public override string ToString() => $"Email: {Address}";
+    }
+
+    class PhoneNumber
+    {
+        public string Number { get; set; }
+        public PhoneNumber(string number)
+        {
+            Number = number;
+        }
+        public override string ToString() => $"Phone Number: {Number}";
+    }
+
+    class URL
+    {
+        public string Address { get; set; }
+        public URL(string address)
+        {
+            Address = address;
+        }
+        public override string ToString() => $"URL: {Address}";
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter a number between 1 and 15 to create and use a class instance:");
+            Console.WriteLine("1: Animal\n2: Car\n3: Person\n4: Rectangle\n5: Student (class vs object demo)\n6: Book\n7: Circle\n8: BankAccount\n9: Temperature\n10: Time\n11: Point\n12: Color\n13: Email\n14: PhoneNumber\n15: URL");
+
+            int choice = int.Parse(Console.ReadLine() ?? "0");
+            switch (choice)
+            {
+                case 1:
+                    var animal = new Animal();
+                    animal.MakeSound();
+                    break;
+                case 2:
+                    var car = new Car("Toyota", "Camry", 2021);
+                    Console.WriteLine(car);
+                    break;
+                case 3:
+                    var person = new Person("Alex", 30);
+                    Console.WriteLine(person);
+                    break;
+                case 4:
+                    var rectangle = new Rectangle(5.0, 10.0);
+                    Console.WriteLine(rectangle);
+                    break;
+                case 5:
+                    // Difference between class and object demonstration
+                    // Class: Template for creating objects
+                    // Object: Instance of a class
+                    var student = new Student("John", 20);
+                    Console.WriteLine("Class definition: Student class defines properties Name and Age.");
+                    Console.WriteLine("Object example: Student object with Name='John' and Age=20 is an instance of this class.");
+                    Console.WriteLine(student);
+                    break;
+                case 6:
+                    var book = new Book("C# Basics", "Jane Doe", 300);
+                    Console.WriteLine(book);
+                    break;
+                case 7:
+                    var circle = new Circle(7);
+                    Console.WriteLine(circle);
+                    Console.WriteLine($"Area: {circle.Area():F2}");
+                    break;
+                case 8:
+                    var account = new BankAccount(1000m);
+                    account.Deposit(500);
+                    account.Withdraw(200);
+                    Console.WriteLine(account);
+                    break;
+                case 9:
+                    var temp = new Temperature(25);
+                    Console.WriteLine(temp);
+                    break;
+                case 10:
+                    var time = new Time(14, 30, 0);
+                    Console.WriteLine(time);
+                    break;
+                case 11:
+                    var point = new Point(1, 2, 3);
+                    Console.WriteLine(point);
+                    break;
+                case 12:
+                    var color = new Color(255, 100, 50);
+                    Console.WriteLine(color);
+                    break;
+                case 13:
+                    var email = new Email("user@example.com");
+                    Console.WriteLine(email);
+                    break;
+                case 14:
+                    var phone = new PhoneNumber("+1234567890");
+                    Console.WriteLine(phone);
+                    break;
+                case 15:
+                    var url = new URL("https://example.com");
+                    Console.WriteLine(url);
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
+
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
