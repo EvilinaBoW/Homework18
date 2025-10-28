@@ -1,0 +1,614 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class Person
+    {
+        private string name;
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                    name = value;
+                else
+                    throw new ArgumentException("Имя не может быть пустым");
+            }
+        }
+
+        public Person(string name)
+        {
+            Name = name;
+        }
+
+        public override string ToString() => $"Человек: {Name}";
+    }
+
+    class Student
+    {
+        private double gpa;
+        public double GPA
+        {
+            get => gpa;
+            set
+            {
+                if (value >= 0.0 && value <= 4.0)
+                    gpa = value;
+                else
+                    throw new ArgumentException("GPA должен быть в диапазоне от 0.0 до 4.0");
+            }
+        }
+
+        public string Name { get; set; }
+
+        public Student(string name, double gpa)
+        {
+            Name = name;
+            GPA = gpa;
+        }
+
+        public override string ToString() => $"Студент: {Name}, GPA: {GPA:F2}";
+    }
+
+    class BankAccount
+    {
+        private decimal balance;
+        public decimal Balance
+        {
+            get => balance;
+            set
+            {
+                if (value >= 0)
+                    balance = value;
+                else
+                    throw new ArgumentException("Баланс не может быть отрицательным");
+            }
+        }
+
+        public string AccountNumber { get; set; }
+
+        public BankAccount(string accountNumber, decimal initialBalance)
+        {
+            AccountNumber = accountNumber;
+            Balance = initialBalance;
+        }
+
+        public override string ToString() => $"Счёт: {AccountNumber}, Баланс: {Balance:C}";
+    }
+
+    class Product
+    {
+        private decimal price;
+        public decimal Price
+        {
+            get => price;
+            set
+            {
+                if (value >= 0)
+                    price = value;
+                else
+                    throw new ArgumentException("Цена не может быть отрицательной");
+            }
+        }
+
+        public string Name { get; set; }
+        public string Category { get; set; }
+
+        public Product(string name, decimal price, string category = "Общее")
+        {
+            Name = name;
+            Price = price;
+            Category = category;
+        }
+
+        public override string ToString() => $"Товар: {Name}, Цена: {Price:C}, Категория: {Category}";
+    }
+
+    class Car
+    {
+        private int speed;
+        public int Speed
+        {
+            get => speed;
+            set
+            {
+                if (value >= 0 && value <= 300)
+                    speed = value;
+                else
+                    throw new ArgumentException("Скорость должна быть в диапазоне от 0 до 300 км/ч");
+            }
+        }
+
+        public string Brand { get; set; }
+        public string Model { get; set; }
+
+        public Car(string brand, string model, int speed = 0)
+        {
+            Brand = brand;
+            Model = model;
+            Speed = speed;
+        }
+
+        public void Accelerate(int increment)
+        {
+            Speed += increment;
+        }
+
+        public void Brake(int decrement)
+        {
+            Speed -= decrement;
+        }
+
+        public override string ToString() => $"Автомобиль: {Brand} {Model}, Скорость: {Speed} км/ч";
+    }
+
+    class Temperature
+    {
+        private double celsius;
+        public double Celsius
+        {
+            get => celsius;
+            set
+            {
+                if (value >= -273.15)
+                    celsius = value;
+                else
+                    throw new ArgumentException("Температура не может быть ниже абсолютного нуля (-273.15°C)");
+            }
+        }
+
+        public double Fahrenheit
+        {
+            get => celsius * 9 / 5 + 32;
+            set => Celsius = (value - 32) * 5 / 9;
+        }
+
+        public Temperature(double celsius)
+        {
+            Celsius = celsius;
+        }
+
+        public override string ToString() => $"Температура: {Celsius:F1}°C ({Fahrenheit:F1}°F)";
+    }
+
+    class Rectangle
+    {
+        private double width;
+        public double Width
+        {
+            get => width;
+            set
+            {
+                if (value > 0)
+                    width = value;
+                else
+                    throw new ArgumentException("Ширина должна быть положительной");
+            }
+        }
+
+        private double height;
+        public double Height
+        {
+            get => height;
+            set
+            {
+                if (value > 0)
+                    height = value;
+                else
+                    throw new ArgumentException("Высота должна быть положительной");
+            }
+        }
+
+        public double Area => Width * Height;
+        public double Perimeter => 2 * (Width + Height);
+
+        public Rectangle(double width, double height)
+        {
+            Width = width;
+            Height = height;
+        }
+
+        public override string ToString() => $"Прямоугольник: {Width} x {Height}, Площадь: {Area:F2}, Периметр: {Perimeter:F2}";
+    }
+
+    class Circle
+    {
+        private double radius;
+        public double Radius
+        {
+            get => radius;
+            set
+            {
+                if (value > 0)
+                    radius = value;
+                else
+                    throw new ArgumentException("Радиус должен быть положительным");
+            }
+        }
+
+        public double Diameter => 2 * Radius;
+        public double Area => Math.PI * Radius * Radius;
+        public double Circumference => 2 * Math.PI * Radius;
+
+        public Circle(double radius)
+        {
+            Radius = radius;
+        }
+
+        public override string ToString() => $"Круг: Радиус = {Radius:F2}, Диаметр = {Diameter:F2}, Площадь = {Area:F2}";
+    }
+
+    class Employee
+    {
+        private decimal salary;
+        public decimal Salary
+        {
+            get => salary;
+            set
+            {
+                if (value >= 0)
+                    salary = value;
+                else
+                    throw new ArgumentException("Зарплата не может быть отрицательной");
+            }
+        }
+
+        public string Name { get; set; }
+        public string Position { get; set; }
+
+        public Employee(string name, string position, decimal salary)
+        {
+            Name = name;
+            Position = position;
+            Salary = salary;
+        }
+
+        public void GiveRaise(decimal amount)
+        {
+            Salary += amount;
+        }
+
+        public override string ToString() => $"Сотрудник: {Name}, Должность: {Position}, Зарплата: {Salary:C}";
+    }
+
+    class Book
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int Year { get; set; }
+        public string ISBN { get; set; }
+
+        public Book(string title, string author, int year = 0, string isbn = "")
+        {
+            Title = title;
+            Author = author;
+            Year = year;
+            ISBN = isbn;
+        }
+
+        public override string ToString() => $"Книга: '{Title}' - {Author}" + (Year > 0 ? $" ({Year})" : "") + (ISBN != "" ? $", ISBN: {ISBN}" : "");
+    }
+
+    class House
+    {
+        private double area;
+        public double Area
+        {
+            get => area;
+            set
+            {
+                if (value > 0)
+                    area = value;
+                else
+                    throw new ArgumentException("Площадь должна быть положительной");
+            }
+        }
+
+        public string Address { get; set; }
+        public int Rooms { get; set; }
+        public int Floors { get; set; }
+
+        public House(string address, double area, int rooms = 1, int floors = 1)
+        {
+            Address = address;
+            Area = area;
+            Rooms = rooms;
+            Floors = floors;
+        }
+
+        public double AreaPerRoom => Area / Rooms;
+
+        public override string ToString() => $"Дом: {Address}, Площадь: {Area:F1} м², Комнат: {Rooms}, Этажей: {Floors}";
+    }
+
+    class Computer
+    {
+        private int ram;
+        public int RAM
+        {
+            get => ram;
+            set
+            {
+                if (value > 0 && value <= 512)
+                    ram = value;
+                else
+                    throw new ArgumentException("ОЗУ должно быть в диапазоне от 1 до 512 ГБ");
+            }
+        }
+
+        public string Processor { get; set; }
+        public string Brand { get; set; }
+        public int Storage { get; set; } // в ГБ
+
+        public Computer(string brand, string processor, int ram, int storage)
+        {
+            Brand = brand;
+            Processor = processor;
+            RAM = ram;
+            Storage = storage;
+        }
+
+        public override string ToString() => $"Компьютер: {Brand}, Процессор: {Processor}, ОЗУ: {RAM} ГБ, Память: {Storage} ГБ";
+    }
+
+    class Account
+    {
+        private string username;
+        public string Username
+        {
+            get => username;
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value) && value.Length >= 3)
+                    username = value;
+                else
+                    throw new ArgumentException("Имя пользователя должно содержать минимум 3 символа");
+            }
+        }
+
+        public string Email { get; set; }
+        public DateTime CreatedAt { get; private set; }
+
+        public Account(string username, string email)
+        {
+            Username = username;
+            Email = email;
+            CreatedAt = DateTime.Now;
+        }
+
+        public override string ToString() => $"Аккаунт: {Username}, Email: {Email}, Создан: {CreatedAt:dd.MM.yyyy}";
+    }
+
+    class Vehicle
+    {
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public string Color { get; set; }
+
+        public Vehicle(string brand, string model, int year = 0, string color = "Не указан")
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+            Color = color;
+        }
+
+        public virtual void DisplayInfo()
+        {
+            Console.WriteLine($"Транспорт: {Brand} {Model}" + (Year > 0 ? $" ({Year})" : "") + $", Цвет: {Color}");
+        }
+
+        public override string ToString() => $"Транспорт: {Brand} {Model}" + (Year > 0 ? $" ({Year})" : "") + $", Цвет: {Color}";
+    }
+
+    class Color
+    {
+        private int red;
+        public int Red
+        {
+            get => red;
+            set
+            {
+                if (value >= 0 && value <= 255)
+                    red = value;
+                else
+                    throw new ArgumentException("Значение Red должно быть в диапазоне 0-255");
+            }
+        }
+
+        private int green;
+        public int Green
+        {
+            get => green;
+            set
+            {
+                if (value >= 0 && value <= 255)
+                    green = value;
+                else
+                    throw new ArgumentException("Значение Green должно быть в диапазоне 0-255");
+            }
+        }
+
+        private int blue;
+        public int Blue
+        {
+            get => blue;
+            set
+            {
+                if (value >= 0 && value <= 255)
+                    blue = value;
+                else
+                    throw new ArgumentException("Значение Blue должно быть в диапазоне 0-255");
+            }
+        }
+
+        public Color(int red, int green, int blue)
+        {
+            Red = red;
+            Green = green;
+            Blue = blue;
+        }
+
+        public string Hex => $"#{Red:X2}{Green:X2}{Blue:X2}";
+
+        public void Darken(int amount)
+        {
+            Red = Math.Max(0, Red - amount);
+            Green = Math.Max(0, Green - amount);
+            Blue = Math.Max(0, Blue - amount);
+        }
+
+        public void Lighten(int amount)
+        {
+            Red = Math.Min(255, Red + amount);
+            Green = Math.Min(255, Green + amount);
+            Blue = Math.Min(255, Blue + amount);
+        }
+
+        public override string ToString() => $"Цвет: RGB({Red}, {Green}, {Blue}), HEX: {Hex}";
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите число от 1 до 15 для тестирования классов со свойствами:");
+            Console.WriteLine("1: Person\n2: Student\n3: BankAccount\n4: Product\n5: Car");
+            Console.WriteLine("6: Temperature\n7: Rectangle\n8: Circle\n9: Employee\n10: Book");
+            Console.WriteLine("11: House\n12: Computer\n13: Account\n14: Vehicle\n15: Color");
+
+            int choice = int.Parse(Console.ReadLine() ?? "0");
+
+            switch (choice)
+            {
+                case 1:
+                    var person = new Person("Иван Иванов");
+                    Console.WriteLine(person);
+                    person.Name = "Петр Петров";
+                    Console.WriteLine($"После изменения: {person}");
+                    break;
+
+                case 2:
+                    var student = new Student("Анна Сидорова", 3.8);
+                    Console.WriteLine(student);
+                    student.GPA = 4.0;
+                    Console.WriteLine($"После улучшения: {student}");
+                    break;
+
+                case 3:
+                    var account = new BankAccount("40817810099910004312", 15000m);
+                    Console.WriteLine(account);
+                    account.Balance += 5000;
+                    Console.WriteLine($"После пополнения: {account}");
+                    break;
+
+                case 4:
+                    var product = new Product("Смартфон", 49999.99m, "Электроника");
+                    Console.WriteLine(product);
+                    product.Price = 44999.99m;
+                    Console.WriteLine($"После скидки: {product}");
+                    break;
+
+                case 5:
+                    var car = new Car("Toyota", "Camry");
+                    Console.WriteLine(car);
+                    car.Accelerate(60);
+                    Console.WriteLine($"После ускорения: {car}");
+                    car.Brake(20);
+                    Console.WriteLine($"После торможения: {car}");
+                    break;
+
+                case 6:
+                    var temperature = new Temperature(25);
+                    Console.WriteLine(temperature);
+                    temperature.Celsius = 30;
+                    Console.WriteLine($"После изменения: {temperature}");
+                    Console.WriteLine($"Установка через Fahrenheit: {75}°F");
+                    temperature.Fahrenheit = 75;
+                    Console.WriteLine($"Результат: {temperature}");
+                    break;
+
+                case 7:
+                    var rectangle = new Rectangle(5, 10);
+                    Console.WriteLine(rectangle);
+                    rectangle.Width = 8;
+                    rectangle.Height = 12;
+                    Console.WriteLine($"После изменения размеров: {rectangle}");
+                    break;
+
+                case 8:
+                    var circle = new Circle(5);
+                    Console.WriteLine(circle);
+                    circle.Radius = 7.5;
+                    Console.WriteLine($"После изменения радиуса: {circle}");
+                    break;
+
+                case 9:
+                    var employee = new Employee("Мария", "Менеджер", 75000m);
+                    Console.WriteLine(employee);
+                    employee.GiveRaise(10000);
+                    Console.WriteLine($"После повышения: {employee}");
+                    break;
+
+                case 10:
+                    var book = new Book("Преступление и наказание", "Ф.М. Достоевский", 1866, "978-5-699-12345-6");
+                    Console.WriteLine(book);
+                    book.Title = "Преступление и наказание (новое издание)";
+                    Console.WriteLine($"После изменения: {book}");
+                    break;
+
+                case 11:
+                    var house = new House("ул. Ленина, 123", 85.5, 3, 2);
+                    Console.WriteLine(house);
+                    Console.WriteLine($"Площадь на комнату: {house.AreaPerRoom:F1} м²");
+                    house.Area = 95.0;
+                    Console.WriteLine($"После ремонта: {house}");
+                    break;
+
+                case 12:
+                    var computer = new Computer("Dell", "Intel Core i7", 16, 512);
+                    Console.WriteLine(computer);
+                    computer.RAM = 32;
+                    Console.WriteLine($"После апгрейда: {computer}");
+                    break;
+
+                case 13:
+                    var userAccount = new Account("john_doe", "john@example.com");
+                    Console.WriteLine(userAccount);
+                    userAccount.Username = "john_smith";
+                    Console.WriteLine($"После изменения имени: {userAccount}");
+                    break;
+
+                case 14:
+                    var vehicle = new Vehicle("BMW", "X5", 2022, "Чёрный");
+                    Console.WriteLine(vehicle);
+                    vehicle.Color = "Белый";
+                    vehicle.Year = 2023;
+                    Console.WriteLine($"После изменения: {vehicle}");
+                    break;
+
+                case 15:
+                    var color = new Color(255, 100, 50);
+                    Console.WriteLine(color);
+                    color.Darken(50);
+                    Console.WriteLine($"После затемнения: {color}");
+                    color.Lighten(25);
+                    Console.WriteLine($"После осветления: {color}");
+                    break;
+
+                default:
+                    Console.WriteLine("Неверный выбор.");
+                    break;
+            }
+
+            Console.WriteLine("\nНажмите любую клавишу для выхода...");
+            Console.ReadKey();
+        }
+    }
+}
