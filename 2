@@ -1,0 +1,536 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class Animal
+    {
+        public void MakeSound() => Console.WriteLine("Какой-то звук");
+    }
+
+    class Car
+    {
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public Car(string brand, string model, int year)
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+        }
+        public override string ToString() => $"{Brand} {Model} {Year}";
+    }
+
+    class Person
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public Person(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+        public override string ToString() => $"Имя: {Name}, Возраст: {Age}";
+    }
+
+    class Rectangle
+    {
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public Rectangle(double width, double height)
+        {
+            Width = width;
+            Height = height;
+        }
+        public override string ToString() => $"Прямоугольник: {Width} x {Height}";
+    }
+
+    class Student
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public Student(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+        public override string ToString() => $"Студент: {Name}, Возраст: {Age}";
+    }
+
+    class Book
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int Pages { get; set; }
+        public Book(string title, string author, int pages)
+        {
+            Title = title;
+            Author = author;
+            Pages = pages;
+        }
+        public override string ToString() => $"Книга: '{Title}' автор {Author}, {Pages} страниц";
+    }
+
+    class Circle
+    {
+        public double Radius { get; set; }
+        public Circle(double radius)
+        {
+            Radius = radius;
+        }
+        public double Area() => Math.PI * Radius * Radius;
+        public override string ToString() => $"Круг с радиусом {Radius}";
+    }
+
+    class BankAccount
+    {
+        public decimal Balance { get; private set; }
+        public BankAccount(decimal initialBalance)
+        {
+            Balance = initialBalance;
+        }
+        public void Deposit(decimal amount)
+        {
+            if (amount > 0) Balance += amount;
+        }
+        public void Withdraw(decimal amount)
+        {
+            if (amount > 0 && amount <= Balance) Balance -= amount;
+        }
+        public override string ToString() => $"Баланс: {Balance:C}";
+    }
+
+    class Temperature
+    {
+        private double celsius;
+        public double Celsius
+        {
+            get => celsius;
+            set => celsius = value;
+        }
+        public Temperature(double celsius) { this.celsius = celsius; }
+        public double Fahrenheit => celsius * 9 / 5 + 32;
+        public override string ToString() => $"{celsius} °C / {Fahrenheit} °F";
+    }
+
+    class Time
+    {
+        public int Hours { get; set; }
+        public int Minutes { get; set; }
+        public int Seconds { get; set; }
+        public Time(int hours, int minutes, int seconds)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
+        }
+        public override string ToString() => $"{Hours:00}:{Minutes:00}:{Seconds:00}";
+    }
+
+    class Point
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Z { get; set; }
+        public Point(double x, double y, double z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
+        public override string ToString() => $"Точка({X}, {Y}, {Z})";
+    }
+
+    class Color
+    {
+        public int R { get; set; }
+        public int G { get; set; }
+        public int B { get; set; }
+        public Color(int r, int g, int b)
+        {
+            R = r;
+            G = g;
+            B = b;
+        }
+        public override string ToString() => $"Цвет(R={R}, G={G}, B={B})";
+    }
+
+    class Email
+    {
+        public string Address { get; set; }
+        public Email(string address)
+        {
+            Address = address;
+        }
+        public override string ToString() => $"Email: {Address}";
+    }
+
+    class PhoneNumber
+    {
+        public string Number { get; set; }
+        public PhoneNumber(string number)
+        {
+            Number = number;
+        }
+        public override string ToString() => $"Телефон: {Number}";
+    }
+
+    class URL
+    {
+        public string Address { get; set; }
+        public URL(string address)
+        {
+            Address = address;
+        }
+        public override string ToString() => $"URL: {Address}";
+    }
+
+    // Новые классы по заданиям
+    class Dog
+    {
+        public string Name { get; set; }
+        public Dog(string name)
+        {
+            Name = name;
+        }
+        public void Bark() => Console.WriteLine($"{Name} гавкает: Гав-гав!");
+        public override string ToString() => $"Собака: {Name}";
+    }
+
+    class RectangleWithArea
+    {
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public RectangleWithArea(double width, double height)
+        {
+            Width = width;
+            Height = height;
+        }
+        public double CalculateArea() => Width * Height;
+        public override string ToString() => $"Прямоугольник: {Width} x {Height}, Площадь: {CalculateArea()}";
+    }
+
+    class Triangle
+    {
+        public double SideA { get; set; }
+        public double SideB { get; set; }
+        public double SideC { get; set; }
+        public Triangle(double a, double b, double c)
+        {
+            SideA = a;
+            SideB = b;
+            SideC = c;
+        }
+        public override string ToString() => $"Треугольник со сторонами: {SideA}, {SideB}, {SideC}";
+    }
+
+    class Employee
+    {
+        public string Name { get; set; }
+        public decimal Salary { get; set; }
+        public Employee(string name, decimal salary)
+        {
+            Name = name;
+            Salary = salary;
+        }
+        public override string ToString() => $"Сотрудник: {Name}, Зарплата: {Salary:C}";
+    }
+
+    class Product
+    {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        public Product(string name, decimal price, int quantity)
+        {
+            Name = name;
+            Price = price;
+            Quantity = quantity;
+        }
+        public decimal TotalValue() => Price * Quantity;
+        public override string ToString() => $"Товар: {Name}, Цена: {Price:C}, Количество: {Quantity}, Общая стоимость: {TotalValue():C}";
+    }
+
+    class StudentWithGPA
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public double GPA { get; set; }
+        public StudentWithGPA(string name, int age, double gpa)
+        {
+            Name = name;
+            Age = age;
+            GPA = gpa;
+        }
+        public override string ToString() => $"Студент: {Name}, Возраст: {Age}, GPA: {GPA}";
+    }
+
+    class House
+    {
+        public int Rooms { get; set; }
+        public double Area { get; set; }
+        public House(int rooms, double area)
+        {
+            Rooms = rooms;
+            Area = area;
+        }
+        public override string ToString() => $"Дом: {Rooms} комнат, Площадь: {Area} м²";
+    }
+
+    class Account
+    {
+        public string AccountNumber { get; set; }
+        public decimal Balance { get; set; }
+        public Account(string accountNumber, decimal balance)
+        {
+            AccountNumber = accountNumber;
+            Balance = balance;
+        }
+        public override string ToString() => $"Счёт: {AccountNumber}, Баланс: {Balance:C}";
+    }
+
+    class Bicycle
+    {
+        public int Gears { get; set; }
+        public Bicycle(int gears)
+        {
+            Gears = gears;
+        }
+        public override string ToString() => $"Велосипед: {Gears} передач";
+    }
+
+    class Computer
+    {
+        public string Processor { get; set; }
+        public int RAM { get; set; }
+        public Computer(string processor, int ram)
+        {
+            Processor = processor;
+            RAM = ram;
+        }
+        public override string ToString() => $"Компьютер: Процессор {Processor}, ОЗУ: {RAM} ГБ";
+    }
+
+    class Flower
+    {
+        public string Name { get; set; }
+        public string Color { get; set; }
+        public Flower(string name, string color)
+        {
+            Name = name;
+            Color = color;
+        }
+        public override string ToString() => $"Цветок: {Name}, Цвет: {Color}";
+    }
+
+    class Laptop
+    {
+        public double ScreenSize { get; set; }
+        public int BatteryLife { get; set; }
+        public Laptop(double screenSize, int batteryLife)
+        {
+            ScreenSize = screenSize;
+            BatteryLife = batteryLife;
+        }
+        public override string ToString() => $"Ноутбук: Экран {ScreenSize}\", Батарея: {BatteryLife} часов";
+    }
+
+    class Pen
+    {
+        public string Color { get; set; }
+        public string Brand { get; set; }
+        public Pen(string color, string brand)
+        {
+            Color = color;
+            Brand = brand;
+        }
+        public void Write(string text) => Console.WriteLine($"Ручка {Brand} ({Color}) пишет: {text}");
+        public override string ToString() => $"Ручка: {Brand}, Цвет: {Color}";
+    }
+
+    class CoffeeCup
+    {
+        public double Capacity { get; set; }
+        public string Material { get; set; }
+        public CoffeeCup(double capacity, string material)
+        {
+            Capacity = capacity;
+            Material = material;
+        }
+        public override string ToString() => $"Кружка для кофе: {Capacity} мл, Материал: {Material}";
+    }
+
+    class BookInfo
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int Year { get; set; }
+        public string Genre { get; set; }
+        public BookInfo(string title, string author, int year, string genre)
+        {
+            Title = title;
+            Author = author;
+            Year = year;
+            Genre = genre;
+        }
+        public override string ToString() => $"Книга: '{Title}' - {Author} ({Year}), Жанр: {Genre}";
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите число от 1 до 30 для создания и использования экземпляра класса:");
+            Console.WriteLine("1-15: Существующие классы");
+            Console.WriteLine("16: Dog\n17: RectangleWithArea\n18: Triangle\n19: Employee\n20: Product");
+            Console.WriteLine("21: StudentWithGPA\n22: House\n23: Account\n24: Bicycle\n25: Computer");
+            Console.WriteLine("26: Flower\n27: Laptop\n28: Pen\n29: CoffeeCup\n30: BookInfo");
+
+            int choice = int.Parse(Console.ReadLine() ?? "0");
+
+            // Существующие классы (1-15)
+            switch (choice)
+            {
+                case 1:
+                    var animal = new Animal();
+                    animal.MakeSound();
+                    break;
+                case 2:
+                    var car = new Car("Toyota", "Camry", 2021);
+                    Console.WriteLine(car);
+                    break;
+                case 3:
+                    var person = new Person("Алексей", 30);
+                    Console.WriteLine(person);
+                    break;
+                case 4:
+                    var rectangle = new Rectangle(5.0, 10.0);
+                    Console.WriteLine(rectangle);
+                    break;
+                case 5:
+                    var student = new Student("Иван", 20);
+                    Console.WriteLine("Определение класса: Класс Student определяет свойства Name и Age.");
+                    Console.WriteLine("Пример объекта: Объект Student с Name='Иван' и Age=20 является экземпляром этого класса.");
+                    Console.WriteLine(student);
+                    break;
+                case 6:
+                    var book = new Book("Основы C#", "Иван Петров", 300);
+                    Console.WriteLine(book);
+                    break;
+                case 7:
+                    var circle = new Circle(7);
+                    Console.WriteLine(circle);
+                    Console.WriteLine($"Площадь: {circle.Area():F2}");
+                    break;
+                case 8:
+                    var account = new BankAccount(1000m);
+                    account.Deposit(500);
+                    account.Withdraw(200);
+                    Console.WriteLine(account);
+                    break;
+                case 9:
+                    var temp = new Temperature(25);
+                    Console.WriteLine(temp);
+                    break;
+                case 10:
+                    var time = new Time(14, 30, 0);
+                    Console.WriteLine(time);
+                    break;
+                case 11:
+                    var point = new Point(1, 2, 3);
+                    Console.WriteLine(point);
+                    break;
+                case 12:
+                    var color = new Color(255, 100, 50);
+                    Console.WriteLine(color);
+                    break;
+                case 13:
+                    var email = new Email("user@example.com");
+                    Console.WriteLine(email);
+                    break;
+                case 14:
+                    var phone = new PhoneNumber("+79991234567");
+                    Console.WriteLine(phone);
+                    break;
+                case 15:
+                    var url = new URL("https://example.com");
+                    Console.WriteLine(url);
+                    break;
+
+                // Новые классы (16-30)
+                case 16:
+                    var dog = new Dog("Бобик");
+                    Console.WriteLine(dog);
+                    dog.Bark();
+                    break;
+                case 17:
+                    var rectArea = new RectangleWithArea(5, 10);
+                    Console.WriteLine(rectArea);
+                    break;
+                case 18:
+                    var triangle = new Triangle(3, 4, 5);
+                    Console.WriteLine(triangle);
+                    break;
+                case 19:
+                    var employee = new Employee("Мария", 50000m);
+                    Console.WriteLine(employee);
+                    break;
+                case 20:
+                    var product = new Product("Яблоки", 100m, 5);
+                    Console.WriteLine(product);
+                    break;
+                case 21:
+                    var studentGPA = new StudentWithGPA("Анна", 21, 4.5);
+                    Console.WriteLine(studentGPA);
+                    break;
+                case 22:
+                    var house = new House(3, 85.5);
+                    Console.WriteLine(house);
+                    break;
+                case 23:
+                    var bankAccount = new Account("40817810099910004312", 15000m);
+                    Console.WriteLine(bankAccount);
+                    break;
+                case 24:
+                    var bicycle = new Bicycle(21);
+                    Console.WriteLine(bicycle);
+                    break;
+                case 25:
+                    var computer = new Computer("Intel Core i7", 16);
+                    Console.WriteLine(computer);
+                    break;
+                case 26:
+                    var flower = new Flower("Роза", "Красный");
+                    Console.WriteLine(flower);
+                    break;
+                case 27:
+                    var laptop = new Laptop(15.6, 8);
+                    Console.WriteLine(laptop);
+                    break;
+                case 28:
+                    var pen = new Pen("Синий", "Parker");
+                    Console.WriteLine(pen);
+                    pen.Write("Привет, мир!");
+                    break;
+                case 29:
+                    var coffeeCup = new CoffeeCup(350, "Керамика");
+                    Console.WriteLine(coffeeCup);
+                    break;
+                case 30:
+                    var bookInfo = new BookInfo("Мастер и Маргарита", "Михаил Булгаков", 1967, "Роман");
+                    Console.WriteLine(bookInfo);
+                    break;
+                default:
+                    Console.WriteLine("Неверный выбор.");
+                    break;
+            }
+
+            Console.WriteLine("\nНажмите любую клавишу для выхода...");
+            Console.ReadKey();
+        }
+    }
+}
