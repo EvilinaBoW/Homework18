@@ -1,0 +1,574 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class Person
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+
+        // Конструктор, принимающий имя и возраст
+        public Person(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+
+        public override string ToString() => $"Человек: {Name}, Возраст: {Age}";
+    }
+
+    class Student
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string Group { get; set; }
+
+        // Конструктор для инициализации ID и имени
+        public Student(string id, string name)
+        {
+            ID = id;
+            Name = name;
+            Group = "Не назначена";
+        }
+
+        // Перегрузка конструктора
+        public Student(string id, string name, string group)
+        {
+            ID = id;
+            Name = name;
+            Group = group;
+        }
+
+        public override string ToString() => $"Студент: {Name}, ID: {ID}, Группа: {Group}";
+    }
+
+    class Rectangle
+    {
+        public double Length { get; set; }
+        public double Width { get; set; }
+
+        // Конструктор для длины и ширины
+        public Rectangle(double length, double width)
+        {
+            Length = length;
+            Width = width;
+        }
+
+        public double Area => Length * Width;
+        public double Perimeter => 2 * (Length + Width);
+
+        public override string ToString() => $"Прямоугольник: {Length} x {Width}, Площадь: {Area}, Периметр: {Perimeter}";
+    }
+
+    class Circle
+    {
+        public double Radius { get; set; }
+
+        // Конструктор для радиуса
+        public Circle(double radius)
+        {
+            Radius = radius;
+        }
+
+        public double Diameter => 2 * Radius;
+        public double Area => Math.PI * Radius * Radius;
+        public double Circumference => 2 * Math.PI * Radius;
+
+        public override string ToString() => $"Круг: Радиус = {Radius}, Диаметр = {Diameter:F2}, Площадь = {Area:F2}";
+    }
+
+    class BankAccount
+    {
+        public string AccountNumber { get; set; }
+        public decimal Balance { get; set; }
+        public string Currency { get; set; }
+
+        // Конструктор для номера счёта и начального баланса
+        public BankAccount(string accountNumber, decimal initialBalance)
+        {
+            AccountNumber = accountNumber;
+            Balance = initialBalance;
+            Currency = "RUB";
+        }
+
+        // Перегрузка конструктора
+        public BankAccount(string accountNumber, decimal initialBalance, string currency)
+        {
+            AccountNumber = accountNumber;
+            Balance = initialBalance;
+            Currency = currency;
+        }
+
+        public void Deposit(decimal amount)
+        {
+            if (amount > 0)
+                Balance += amount;
+        }
+
+        public bool Withdraw(decimal amount)
+        {
+            if (amount > 0 && amount <= Balance)
+            {
+                Balance -= amount;
+                return true;
+            }
+            return false;
+        }
+
+        public override string ToString() => $"Банковский счёт: {AccountNumber}, Баланс: {Balance} {Currency}";
+    }
+
+    class Car
+    {
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public string Color { get; set; }
+
+        // Конструктор для марки, модели и года
+        public Car(string brand, string model, int year)
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+            Color = "Не указан";
+        }
+
+        // Перегрузка конструктора
+        public Car(string brand, string model, int year, string color)
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+            Color = color;
+        }
+
+        public override string ToString() => $"Автомобиль: {Brand} {Model} ({Year}), Цвет: {Color}";
+    }
+
+    class Book
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int Pages { get; set; }
+        public string Genre { get; set; }
+
+        // Конструктор для названия, автора и количества страниц
+        public Book(string title, string author, int pages)
+        {
+            Title = title;
+            Author = author;
+            Pages = pages;
+            Genre = "Не указан";
+        }
+
+        // Перегрузка конструктора
+        public Book(string title, string author, int pages, string genre)
+        {
+            Title = title;
+            Author = author;
+            Pages = pages;
+            Genre = genre;
+        }
+
+        public override string ToString() => $"Книга: '{Title}' - {Author}, Страниц: {Pages}, Жанр: {Genre}";
+    }
+
+    class Employee
+    {
+        public string Name { get; set; }
+        public decimal Salary { get; set; }
+        public string Position { get; set; }
+
+        // Конструктор для имени и зарплаты
+        public Employee(string name, decimal salary)
+        {
+            Name = name;
+            Salary = salary;
+            Position = "Сотрудник";
+        }
+
+        // Перегрузка конструктора
+        public Employee(string name, decimal salary, string position)
+        {
+            Name = name;
+            Salary = salary;
+            Position = position;
+        }
+
+        public void GiveRaise(decimal amount)
+        {
+            Salary += amount;
+        }
+
+        public override string ToString() => $"Сотрудник: {Name}, Должность: {Position}, Зарплата: {Salary:C}";
+    }
+
+    class Product
+    {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string Category { get; set; }
+
+        // Конструктор для названия и цены
+        public Product(string name, decimal price)
+        {
+            Name = name;
+            Price = price;
+            Category = "Общее";
+        }
+
+        // Перегрузка конструктора
+        public Product(string name, decimal price, string category)
+        {
+            Name = name;
+            Price = price;
+            Category = category;
+        }
+
+        public override string ToString() => $"Товар: {Name}, Цена: {Price:C}, Категория: {Category}";
+    }
+
+    class House
+    {
+        public string Address { get; set; }
+        public int Rooms { get; set; }
+        public double Area { get; set; }
+
+        // Конструктор для адреса и количества комнат
+        public House(string address, int rooms)
+        {
+            Address = address;
+            Rooms = rooms;
+            Area = 0;
+        }
+
+        // Перегрузка конструктора
+        public House(string address, int rooms, double area)
+        {
+            Address = address;
+            Rooms = rooms;
+            Area = area;
+        }
+
+        public double AreaPerRoom => Area > 0 ? Area / Rooms : 0;
+
+        public override string ToString() => $"Дом: {Address}, Комнат: {Rooms}, Площадь: {Area:F1} м²";
+    }
+
+    class Triangle
+    {
+        public double SideA { get; set; }
+        public double SideB { get; set; }
+        public double SideC { get; set; }
+
+        // Конструктор для трёх сторон
+        public Triangle(double sideA, double sideB, double sideC)
+        {
+            SideA = sideA;
+            SideB = sideB;
+            SideC = sideC;
+        }
+
+        public bool IsValid()
+        {
+            return SideA + SideB > SideC &&
+                   SideA + SideC > SideB &&
+                   SideB + SideC > SideA;
+        }
+
+        public double Perimeter => SideA + SideB + SideC;
+
+        public double Area
+        {
+            get
+            {
+                if (!IsValid()) return 0;
+                double p = Perimeter / 2;
+                return Math.Sqrt(p * (p - SideA) * (p - SideB) * (p - SideC));
+            }
+        }
+
+        public override string ToString() => $"Треугольник: Стороны {SideA}, {SideB}, {SideC}, Периметр: {Perimeter}, Площадь: {Area:F2}";
+    }
+
+    class Time
+    {
+        public int Hours { get; set; }
+        public int Minutes { get; set; }
+        public int Seconds { get; set; }
+
+        // Конструктор для часов, минут и секунд
+        public Time(int hours, int minutes, int seconds)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
+            Normalize();
+        }
+
+        // Перегрузка конструктора только для часов и минут
+        public Time(int hours, int minutes) : this(hours, minutes, 0) { }
+
+        private void Normalize()
+        {
+            if (Seconds >= 60)
+            {
+                Minutes += Seconds / 60;
+                Seconds %= 60;
+            }
+            if (Minutes >= 60)
+            {
+                Hours += Minutes / 60;
+                Minutes %= 60;
+            }
+            if (Hours >= 24)
+            {
+                Hours %= 24;
+            }
+        }
+
+        public void AddSeconds(int seconds)
+        {
+            Seconds += seconds;
+            Normalize();
+        }
+
+        public override string ToString() => $"{Hours:00}:{Minutes:00}:{Seconds:00}";
+    }
+
+    class Temperature
+    {
+        public double Celsius { get; set; }
+
+        // Конструктор для значения в Цельсиях
+        public Temperature(double celsius)
+        {
+            Celsius = celsius;
+        }
+
+        public double Fahrenheit => Celsius * 9 / 5 + 32;
+        public double Kelvin => Celsius + 273.15;
+
+        public override string ToString() => $"{Celsius:F1}°C = {Fahrenheit:F1}°F = {Kelvin:F1}K";
+    }
+
+    class Color
+    {
+        public int R { get; set; }
+        public int G { get; set; }
+        public int B { get; set; }
+
+        // Вспомогательный метод для ограничения значений (замена Math.Clamp)
+        private int Clamp(int value, int min, int max)
+        {
+            if (value < min) return min;
+            if (value > max) return max;
+            return value;
+        }
+
+        // Конструктор для R, G, B компонентов
+        public Color(int r, int g, int b)
+        {
+            R = Clamp(r, 0, 255);
+            G = Clamp(g, 0, 255);
+            B = Clamp(b, 0, 255);
+        }
+
+        public string Hex => $"#{R:X2}{G:X2}{B:X2}";
+
+        public void Darken(int amount)
+        {
+            R = Clamp(R - amount, 0, 255);
+            G = Clamp(G - amount, 0, 255);
+            B = Clamp(B - amount, 0, 255);
+        }
+
+        public void Lighten(int amount)
+        {
+            R = Clamp(R + amount, 0, 255);
+            G = Clamp(G + amount, 0, 255);
+            B = Clamp(B + amount, 0, 255);
+        }
+
+        public override string ToString() => $"Цвет: RGB({R}, {G}, {B}), HEX: {Hex}";
+    }
+
+    class Point
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        // Конструктор для координат X и Y
+        public Point(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        // Конструктор для точки в начале координат
+        public Point() : this(0, 0) { }
+
+        public double DistanceTo(Point other)
+        {
+            double dx = X - other.X;
+            double dy = Y - other.Y;
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
+
+        public double DistanceToOrigin() => DistanceTo(new Point(0, 0));
+
+        public override string ToString() => $"Точка({X}, {Y})";
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите число от 1 до 15 для тестирования классов с конструкторами:");
+            Console.WriteLine("1: Person\n2: Student\n3: Rectangle\n4: Circle\n5: BankAccount");
+            Console.WriteLine("6: Car\n7: Book\n8: Employee\n9: Product\n10: House");
+            Console.WriteLine("11: Triangle\n12: Time\n13: Temperature\n14: Color\n15: Point");
+
+            int choice;
+            if (int.TryParse(Console.ReadLine(), out choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        var person = new Person("Иван Иванов", 30);
+                        Console.WriteLine(person);
+                        break;
+
+                    case 2:
+                        var student1 = new Student("STU-001", "Анна Петрова");
+                        Console.WriteLine(student1);
+                        var student2 = new Student("STU-002", "Петр Сидоров", "ИТ-21");
+                        Console.WriteLine(student2);
+                        break;
+
+                    case 3:
+                        var rectangle = new Rectangle(5.0, 10.0);
+                        Console.WriteLine(rectangle);
+                        break;
+
+                    case 4:
+                        var circle = new Circle(7.5);
+                        Console.WriteLine(circle);
+                        break;
+
+                    case 5:
+                        var account1 = new BankAccount("40817810099910004312", 50000m);
+                        Console.WriteLine(account1);
+                        var account2 = new BankAccount("40817810099910004313", 1000m, "USD");
+                        Console.WriteLine(account2);
+                        account2.Deposit(500);
+                        Console.WriteLine($"После пополнения: {account2}");
+                        break;
+
+                    case 6:
+                        var car1 = new Car("Toyota", "Camry", 2022);
+                        Console.WriteLine(car1);
+                        var car2 = new Car("BMW", "X5", 2023, "Чёрный");
+                        Console.WriteLine(car2);
+                        break;
+
+                    case 7:
+                        var book1 = new Book("Преступление и наказание", "Ф.М. Достоевский", 551);
+                        Console.WriteLine(book1);
+                        var book2 = new Book("Мастер и Маргарита", "М.А. Булгаков", 480, "Роман");
+                        Console.WriteLine(book2);
+                        break;
+
+                    case 8:
+                        var employee1 = new Employee("Мария", 75000m);
+                        Console.WriteLine(employee1);
+                        var employee2 = new Employee("Алексей", 100000m, "Менеджер");
+                        Console.WriteLine(employee2);
+                        employee2.GiveRaise(15000);
+                        Console.WriteLine($"После повышения: {employee2}");
+                        break;
+
+                    case 9:
+                        var product1 = new Product("Смартфон", 49999.99m);
+                        Console.WriteLine(product1);
+                        var product2 = new Product("Ноутбук", 89999.99m, "Электроника");
+                        Console.WriteLine(product2);
+                        break;
+
+                    case 10:
+                        var house1 = new House("ул. Ленина, 10", 3);
+                        Console.WriteLine(house1);
+                        var house2 = new House("ул. Пушкина, 25", 4, 85.5);
+                        Console.WriteLine(house2);
+                        Console.WriteLine($"Площадь на комнату: {house2.AreaPerRoom:F1} м²");
+                        break;
+
+                    case 11:
+                        var triangle1 = new Triangle(3, 4, 5);
+                        Console.WriteLine(triangle1);
+                        Console.WriteLine($"Валидный треугольник: {triangle1.IsValid()}");
+
+                        var triangle2 = new Triangle(1, 1, 3);
+                        Console.WriteLine($"\n{triangle2}");
+                        Console.WriteLine($"Валидный треугольник: {triangle2.IsValid()}");
+                        break;
+
+                    case 12:
+                        var time1 = new Time(14, 30, 45);
+                        Console.WriteLine($"Время: {time1}");
+
+                        var time2 = new Time(23, 59, 60);
+                        Console.WriteLine($"Время с нормализацией: {time2}");
+
+                        time2.AddSeconds(120);
+                        Console.WriteLine($"После добавления 120 секунд: {time2}");
+                        break;
+
+                    case 13:
+                        var temp = new Temperature(25.5);
+                        Console.WriteLine(temp);
+
+                        var freezing = new Temperature(0);
+                        Console.WriteLine($"Температура замерзания: {freezing}");
+                        break;
+
+                    case 14:
+                        var color1 = new Color(255, 0, 0);
+                        Console.WriteLine(color1);
+
+                        var color2 = new Color(100, 150, 200);
+                        Console.WriteLine(color2);
+
+                        color2.Darken(50);
+                        Console.WriteLine($"После затемнения: {color2}");
+                        break;
+
+                    case 15:
+                        var point1 = new Point(3, 4);
+                        var point2 = new Point(0, 0);
+                        Console.WriteLine($"{point1}");
+                        Console.WriteLine($"{point2}");
+                        Console.WriteLine($"Расстояние между точками: {point1.DistanceTo(point2):F2}");
+                        Console.WriteLine($"Расстояние до начала координат: {point1.DistanceToOrigin():F2}");
+                        break;
+
+                    default:
+                        Console.WriteLine("Неверный выбор.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Ошибка ввода. Введите число от 1 до 15.");
+            }
+
+            Console.WriteLine("\nНажмите любую клавишу для выхода...");
+            Console.ReadKey();
+        }
+    }
+}
