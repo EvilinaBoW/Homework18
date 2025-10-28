@@ -1,0 +1,402 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class Person
+    {
+        public string Name { get; set; }
+        public int Age { get; } // Readonly свойство
+
+        public Person(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+
+        public override string ToString() => $"Человек: {Name}, Возраст: {Age}";
+    }
+
+    class Student
+    {
+        public string Name { get; set; }
+        public string ID { get; } // Readonly свойство
+
+        public Student(string name, string id)
+        {
+            Name = name;
+            ID = id;
+        }
+
+        public override string ToString() => $"Студент: {Name}, ID: {ID}";
+    }
+
+    class BankAccount
+    {
+        public decimal Balance { get; set; }
+        public string AccountNumber { get; } // Readonly свойство
+
+        public BankAccount(string accountNumber, decimal initialBalance)
+        {
+            AccountNumber = accountNumber;
+            Balance = initialBalance;
+        }
+
+        public override string ToString() => $"Банковский счёт: {AccountNumber}, Баланс: {Balance:C}";
+    }
+
+    class Product
+    {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string Code { get; } // Readonly свойство
+
+        public Product(string name, decimal price, string code)
+        {
+            Name = name;
+            Price = price;
+            Code = code;
+        }
+
+        public override string ToString() => $"Товар: {Name}, Цена: {Price:C}, Код: {Code}";
+    }
+
+    class Employee
+    {
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public string EmployeeID { get; } // Readonly свойство
+
+        public Employee(string name, string position, string employeeId)
+        {
+            Name = name;
+            Position = position;
+            EmployeeID = employeeId;
+        }
+
+        public override string ToString() => $"Сотрудник: {Name}, Должность: {Position}, ID: {EmployeeID}";
+    }
+
+    class Car
+    {
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public string VIN { get; } // Readonly свойство
+
+        public Car(string brand, string model, int year, string vin)
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+            VIN = vin;
+        }
+
+        public override string ToString() => $"Автомобиль: {Brand} {Model} ({Year}), VIN: {VIN}";
+    }
+
+    class House
+    {
+        public string Address { get; } // Readonly свойство
+        public double Area { get; set; }
+        public int Rooms { get; set; }
+
+        public House(string address, double area, int rooms)
+        {
+            Address = address;
+            Area = area;
+            Rooms = rooms;
+        }
+
+        public override string ToString() => $"Дом: {Address}, Площадь: {Area:F1} м², Комнат: {Rooms}";
+    }
+
+    class Book
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string ISBN { get; } // Readonly свойство
+
+        public Book(string title, string author, string isbn)
+        {
+            Title = title;
+            Author = author;
+            ISBN = isbn;
+        }
+
+        public override string ToString() => $"Книга: '{Title}' - {Author}, ISBN: {ISBN}";
+    }
+
+    class Computer
+    {
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public string SerialNumber { get; } // Readonly свойство
+
+        public Computer(string brand, string model, string serialNumber)
+        {
+            Brand = brand;
+            Model = model;
+            SerialNumber = serialNumber;
+        }
+
+        public override string ToString() => $"Компьютер: {Brand} {Model}, Серийный номер: {SerialNumber}";
+    }
+
+    class Document
+    {
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public DateTime CreatedDate { get; } // Readonly свойство
+
+        public Document(string title, string content)
+        {
+            Title = title;
+            Content = content;
+            CreatedDate = DateTime.Now;
+        }
+
+        public Document(string title, string content, DateTime createdDate)
+        {
+            Title = title;
+            Content = content;
+            CreatedDate = createdDate;
+        }
+
+        public override string ToString() => $"Документ: {Title}, Создан: {CreatedDate:dd.MM.yyyy HH:mm}";
+    }
+
+    class Order
+    {
+        public string CustomerName { get; set; }
+        public decimal TotalAmount { get; set; }
+        public string OrderID { get; } // Readonly свойство
+
+        public Order(string customerName, decimal totalAmount, string orderId)
+        {
+            CustomerName = customerName;
+            TotalAmount = totalAmount;
+            OrderID = orderId;
+        }
+
+        public override string ToString() => $"Заказ: {OrderID}, Клиент: {CustomerName}, Сумма: {TotalAmount:C}";
+    }
+
+    class Invoice
+    {
+        public string Customer { get; set; }
+        public decimal Amount { get; set; }
+        public string InvoiceNumber { get; } // Readonly свойство
+
+        public Invoice(string customer, decimal amount, string invoiceNumber)
+        {
+            Customer = customer;
+            Amount = amount;
+            InvoiceNumber = invoiceNumber;
+        }
+
+        public override string ToString() => $"Счёт: {InvoiceNumber}, Клиент: {Customer}, Сумма: {Amount:C}";
+    }
+
+    class User
+    {
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string UID { get; } // Readonly свойство
+
+        public User(string username, string email, string uid)
+        {
+            Username = username;
+            Email = email;
+            UID = uid;
+        }
+
+        public override string ToString() => $"Пользователь: {Username}, Email: {Email}, UID: {UID}";
+    }
+
+    class Device
+    {
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public string MAC { get; } // Readonly свойство
+
+        public Device(string name, string type, string mac)
+        {
+            Name = name;
+            Type = type;
+            MAC = mac;
+        }
+
+        public override string ToString() => $"Устройство: {Name}, Тип: {Type}, MAC: {MAC}";
+    }
+
+    class Ticket
+    {
+        public string EventName { get; set; }
+        public DateTime EventDate { get; set; }
+        public string Seat { get; set; }
+        public string TicketNumber { get; } // Readonly свойство
+
+        public Ticket(string eventName, DateTime eventDate, string seat, string ticketNumber)
+        {
+            EventName = eventName;
+            EventDate = eventDate;
+            Seat = seat;
+            TicketNumber = ticketNumber;
+        }
+
+        public override string ToString() => $"Билет: {TicketNumber}, Мероприятие: {EventName}, Дата: {EventDate:dd.MM.yyyy}, Место: {Seat}";
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите число от 1 до 15 для тестирования классов с readonly свойствами:");
+            Console.WriteLine("1: Person\n2: Student\n3: BankAccount\n4: Product\n5: Employee");
+            Console.WriteLine("6: Car\n7: House\n8: Book\n9: Computer\n10: Document");
+            Console.WriteLine("11: Order\n12: Invoice\n13: User\n14: Device\n15: Ticket");
+
+            int choice = int.Parse(Console.ReadLine() ?? "0");
+
+            switch (choice)
+            {
+                case 1:
+                    var person = new Person("Алексей", 30);
+                    Console.WriteLine(person);
+                    person.Name = "Алексей Петров";
+                    Console.WriteLine($"После изменения имени: {person}");
+                    // person.Age = 31; // Ошибка компиляции - Age readonly
+                    break;
+
+                case 2:
+                    var student = new Student("Мария", "STU-2024-001");
+                    Console.WriteLine(student);
+                    student.Name = "Мария Иванова";
+                    Console.WriteLine($"После изменения имени: {student}");
+                    // student.ID = "NEW-ID"; // Ошибка компиляции - ID readonly
+                    break;
+
+                case 3:
+                    var account = new BankAccount("40817810099910004312", 50000m);
+                    Console.WriteLine(account);
+                    account.Balance += 10000;
+                    Console.WriteLine($"После пополнения: {account}");
+                    // account.AccountNumber = "NEW-ACCOUNT"; // Ошибка компиляции - AccountNumber readonly
+                    break;
+
+                case 4:
+                    var product = new Product("Ноутбук", 89999.99m, "PROD-LT-001");
+                    Console.WriteLine(product);
+                    product.Price = 79999.99m;
+                    Console.WriteLine($"После изменения цены: {product}");
+                    // product.Code = "NEW-CODE"; // Ошибка компиляции - Code readonly
+                    break;
+
+                case 5:
+                    var employee = new Employee("Иван", "Разработчик", "EMP-007");
+                    Console.WriteLine(employee);
+                    employee.Position = "Старший разработчик";
+                    Console.WriteLine($"После повышения: {employee}");
+                    // employee.EmployeeID = "NEW-ID"; // Ошибка компиляции - EmployeeID readonly
+                    break;
+
+                case 6:
+                    var car = new Car("Toyota", "Camry", 2022, "1HGCM82633A123456");
+                    Console.WriteLine(car);
+                    car.Year = 2023;
+                    Console.WriteLine($"После изменения года: {car}");
+                    // car.VIN = "NEW-VIN"; // Ошибка компиляции - VIN readonly
+                    break;
+
+                case 7:
+                    var house = new House("ул. Пушкина, 10", 120.5, 4);
+                    Console.WriteLine(house);
+                    house.Area = 125.0;
+                    house.Rooms = 5;
+                    Console.WriteLine($"После реконструкции: {house}");
+                    // house.Address = "Новый адрес"; // Ошибка компиляции - Address readonly
+                    break;
+
+                case 8:
+                    var book = new Book("Война и мир", "Л.Н. Толстой", "978-5-389-12345-6");
+                    Console.WriteLine(book);
+                    book.Title = "Война и мир (полное издание)";
+                    Console.WriteLine($"После изменения названия: {book}");
+                    // book.ISBN = "NEW-ISBN"; // Ошибка компиляции - ISBN readonly
+                    break;
+
+                case 9:
+                    var computer = new Computer("Dell", "XPS 15", "SN-XPS15-2024-001");
+                    Console.WriteLine(computer);
+                    computer.Brand = "Dell Inc.";
+                    Console.WriteLine($"После изменения бренда: {computer}");
+                    // computer.SerialNumber = "NEW-SN"; // Ошибка компиляции - SerialNumber readonly
+                    break;
+
+                case 10:
+                    var document = new Document("Договор", "Текст договора...");
+                    Console.WriteLine(document);
+                    // Небольшая задержка для демонстрации разного времени создания
+                    System.Threading.Thread.Sleep(100);
+                    var document2 = new Document("Отчёт", "Текст отчёта...");
+                    Console.WriteLine(document2);
+                    // document.CreatedDate = DateTime.Now; // Ошибка компиляции - CreatedDate readonly
+                    break;
+
+                case 11:
+                    var order = new Order("ООО 'Ромашка'", 150000m, "ORD-2024-1001");
+                    Console.WriteLine(order);
+                    order.TotalAmount = 145000m;
+                    Console.WriteLine($"После изменения суммы: {order}");
+                    // order.OrderID = "NEW-ORDER-ID"; // Ошибка компиляции - OrderID readonly
+                    break;
+
+                case 12:
+                    var invoice = new Invoice("ИП Сидоров", 75000m, "INV-2024-0501");
+                    Console.WriteLine(invoice);
+                    invoice.Amount = 70000m;
+                    Console.WriteLine($"После корректировки: {invoice}");
+                    // invoice.InvoiceNumber = "NEW-INV"; // Ошибка компиляции - InvoiceNumber readonly
+                    break;
+
+                case 13:
+                    var user = new User("john_doe", "john@example.com", "UID-9A8B7C6D");
+                    Console.WriteLine(user);
+                    user.Username = "john_smith";
+                    Console.WriteLine($"После изменения имени пользователя: {user}");
+                    // user.UID = "NEW-UID"; // Ошибка компиляции - UID readonly
+                    break;
+
+                case 14:
+                    var device = new Device("Wi-Fi роутер", "Сетевое оборудование", "00:1B:44:11:3A:B7");
+                    Console.WriteLine(device);
+                    device.Name = "Беспроводной маршрутизатор";
+                    Console.WriteLine($"После изменения названия: {device}");
+                    // device.MAC = "NEW-MAC"; // Ошибка компиляции - MAC readonly
+                    break;
+
+                case 15:
+                    var ticket = new Ticket("Концерт симфонического оркестра",
+                                          new DateTime(2024, 12, 25, 19, 0, 0),
+                                          "Партер, ряд 5, место 12",
+                                          "TKT-2024-12345");
+                    Console.WriteLine(ticket);
+                    ticket.Seat = "Партер, ряд 5, место 10";
+                    Console.WriteLine($"После изменения места: {ticket}");
+                    // ticket.TicketNumber = "NEW-TICKET"; // Ошибка компиляции - TicketNumber readonly
+                    break;
+
+                default:
+                    Console.WriteLine("Неверный выбор.");
+                    break;
+            }
+
+            Console.WriteLine("\nНажмите любую клавишу для выхода...");
+            Console.ReadKey();
+        }
+    }
+}
