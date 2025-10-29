@@ -9,7 +9,7 @@ namespace ConsoleApp6
     class Person
     {
         public string Name { get; set; }
-        public int Age { get; } // Readonly свойство
+        public int Age { get; } 
 
         public Person(string name, int age)
         {
@@ -23,7 +23,7 @@ namespace ConsoleApp6
     class Student
     {
         public string Name { get; set; }
-        public string ID { get; } // Readonly свойство
+        public string ID { get; } 
 
         public Student(string name, string id)
         {
@@ -37,7 +37,7 @@ namespace ConsoleApp6
     class BankAccount
     {
         public decimal Balance { get; set; }
-        public string AccountNumber { get; } // Readonly свойство
+        public string AccountNumber { get; } 
 
         public BankAccount(string accountNumber, decimal initialBalance)
         {
@@ -52,7 +52,7 @@ namespace ConsoleApp6
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public string Code { get; } // Readonly свойство
+        public string Code { get; } 
 
         public Product(string name, decimal price, string code)
         {
@@ -68,7 +68,7 @@ namespace ConsoleApp6
     {
         public string Name { get; set; }
         public string Position { get; set; }
-        public string EmployeeID { get; } // Readonly свойство
+        public string EmployeeID { get; } 
 
         public Employee(string name, string position, string employeeId)
         {
@@ -85,7 +85,7 @@ namespace ConsoleApp6
         public string Brand { get; set; }
         public string Model { get; set; }
         public int Year { get; set; }
-        public string VIN { get; } // Readonly свойство
+        public string VIN { get; } 
 
         public Car(string brand, string model, int year, string vin)
         {
@@ -100,7 +100,7 @@ namespace ConsoleApp6
 
     class House
     {
-        public string Address { get; } // Readonly свойство
+        public string Address { get; } 
         public double Area { get; set; }
         public int Rooms { get; set; }
 
@@ -118,7 +118,7 @@ namespace ConsoleApp6
     {
         public string Title { get; set; }
         public string Author { get; set; }
-        public string ISBN { get; } // Readonly свойство
+        public string ISBN { get; } 
 
         public Book(string title, string author, string isbn)
         {
@@ -134,7 +134,7 @@ namespace ConsoleApp6
     {
         public string Brand { get; set; }
         public string Model { get; set; }
-        public string SerialNumber { get; } // Readonly свойство
+        public string SerialNumber { get; } 
 
         public Computer(string brand, string model, string serialNumber)
         {
@@ -150,7 +150,7 @@ namespace ConsoleApp6
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public DateTime CreatedDate { get; } // Readonly свойство
+        public DateTime CreatedDate { get; } 
 
         public Document(string title, string content)
         {
@@ -173,7 +173,7 @@ namespace ConsoleApp6
     {
         public string CustomerName { get; set; }
         public decimal TotalAmount { get; set; }
-        public string OrderID { get; } // Readonly свойство
+        public string OrderID { get; } 
 
         public Order(string customerName, decimal totalAmount, string orderId)
         {
@@ -189,7 +189,7 @@ namespace ConsoleApp6
     {
         public string Customer { get; set; }
         public decimal Amount { get; set; }
-        public string InvoiceNumber { get; } // Readonly свойство
+        public string InvoiceNumber { get; } 
 
         public Invoice(string customer, decimal amount, string invoiceNumber)
         {
@@ -205,7 +205,7 @@ namespace ConsoleApp6
     {
         public string Username { get; set; }
         public string Email { get; set; }
-        public string UID { get; } // Readonly свойство
+        public string UID { get; } 
 
         public User(string username, string email, string uid)
         {
@@ -221,7 +221,7 @@ namespace ConsoleApp6
     {
         public string Name { get; set; }
         public string Type { get; set; }
-        public string MAC { get; } // Readonly свойство
+        public string MAC { get; } 
 
         public Device(string name, string type, string mac)
         {
@@ -238,7 +238,7 @@ namespace ConsoleApp6
         public string EventName { get; set; }
         public DateTime EventDate { get; set; }
         public string Seat { get; set; }
-        public string TicketNumber { get; } // Readonly свойство
+        public string TicketNumber { get; }
 
         public Ticket(string eventName, DateTime eventDate, string seat, string ticketNumber)
         {
@@ -269,7 +269,7 @@ namespace ConsoleApp6
                     Console.WriteLine(person);
                     person.Name = "Алексей Петров";
                     Console.WriteLine($"После изменения имени: {person}");
-                    // person.Age = 31; // Ошибка компиляции - Age readonly
+                    // person.Age = 31;
                     break;
 
                 case 2:
@@ -277,7 +277,7 @@ namespace ConsoleApp6
                     Console.WriteLine(student);
                     student.Name = "Мария Иванова";
                     Console.WriteLine($"После изменения имени: {student}");
-                    // student.ID = "NEW-ID"; // Ошибка компиляции - ID readonly
+                    // student.ID = "NEW-ID"; 
                     break;
 
                 case 3:
@@ -285,7 +285,7 @@ namespace ConsoleApp6
                     Console.WriteLine(account);
                     account.Balance += 10000;
                     Console.WriteLine($"После пополнения: {account}");
-                    // account.AccountNumber = "NEW-ACCOUNT"; // Ошибка компиляции - AccountNumber readonly
+                    // account.AccountNumber = "NEW-ACCOUNT"; 
                     break;
 
                 case 4:
@@ -293,7 +293,7 @@ namespace ConsoleApp6
                     Console.WriteLine(product);
                     product.Price = 79999.99m;
                     Console.WriteLine($"После изменения цены: {product}");
-                    // product.Code = "NEW-CODE"; // Ошибка компиляции - Code readonly
+                    // product.Code = "NEW-CODE"; 
                     break;
 
                 case 5:
@@ -301,7 +301,7 @@ namespace ConsoleApp6
                     Console.WriteLine(employee);
                     employee.Position = "Старший разработчик";
                     Console.WriteLine($"После повышения: {employee}");
-                    // employee.EmployeeID = "NEW-ID"; // Ошибка компиляции - EmployeeID readonly
+                    // employee.EmployeeID = "NEW-ID";
                     break;
 
                 case 6:
@@ -309,7 +309,7 @@ namespace ConsoleApp6
                     Console.WriteLine(car);
                     car.Year = 2023;
                     Console.WriteLine($"После изменения года: {car}");
-                    // car.VIN = "NEW-VIN"; // Ошибка компиляции - VIN readonly
+                    // car.VIN = "NEW-VIN"; 
                     break;
 
                 case 7:
@@ -318,7 +318,7 @@ namespace ConsoleApp6
                     house.Area = 125.0;
                     house.Rooms = 5;
                     Console.WriteLine($"После реконструкции: {house}");
-                    // house.Address = "Новый адрес"; // Ошибка компиляции - Address readonly
+                    // house.Address = "Новый адрес"
                     break;
 
                 case 8:
@@ -326,7 +326,7 @@ namespace ConsoleApp6
                     Console.WriteLine(book);
                     book.Title = "Война и мир (полное издание)";
                     Console.WriteLine($"После изменения названия: {book}");
-                    // book.ISBN = "NEW-ISBN"; // Ошибка компиляции - ISBN readonly
+                    // book.ISBN = "NEW-ISBN"; 
                     break;
 
                 case 9:
@@ -334,17 +334,16 @@ namespace ConsoleApp6
                     Console.WriteLine(computer);
                     computer.Brand = "Dell Inc.";
                     Console.WriteLine($"После изменения бренда: {computer}");
-                    // computer.SerialNumber = "NEW-SN"; // Ошибка компиляции - SerialNumber readonly
+                    // computer.SerialNumber = "NEW-SN"; 
                     break;
 
                 case 10:
                     var document = new Document("Договор", "Текст договора...");
                     Console.WriteLine(document);
-                    // Небольшая задержка для демонстрации разного времени создания
                     System.Threading.Thread.Sleep(100);
                     var document2 = new Document("Отчёт", "Текст отчёта...");
                     Console.WriteLine(document2);
-                    // document.CreatedDate = DateTime.Now; // Ошибка компиляции - CreatedDate readonly
+                    // document.CreatedDate = DateTime.Now;
                     break;
 
                 case 11:
@@ -352,7 +351,7 @@ namespace ConsoleApp6
                     Console.WriteLine(order);
                     order.TotalAmount = 145000m;
                     Console.WriteLine($"После изменения суммы: {order}");
-                    // order.OrderID = "NEW-ORDER-ID"; // Ошибка компиляции - OrderID readonly
+                    // order.OrderID = "NEW-ORDER-ID"; 
                     break;
 
                 case 12:
@@ -360,7 +359,7 @@ namespace ConsoleApp6
                     Console.WriteLine(invoice);
                     invoice.Amount = 70000m;
                     Console.WriteLine($"После корректировки: {invoice}");
-                    // invoice.InvoiceNumber = "NEW-INV"; // Ошибка компиляции - InvoiceNumber readonly
+                    // invoice.InvoiceNumber = "NEW-INV"; 
                     break;
 
                 case 13:
@@ -368,7 +367,7 @@ namespace ConsoleApp6
                     Console.WriteLine(user);
                     user.Username = "john_smith";
                     Console.WriteLine($"После изменения имени пользователя: {user}");
-                    // user.UID = "NEW-UID"; // Ошибка компиляции - UID readonly
+                    // user.UID = "NEW-UID"; 
                     break;
 
                 case 14:
@@ -376,7 +375,7 @@ namespace ConsoleApp6
                     Console.WriteLine(device);
                     device.Name = "Беспроводной маршрутизатор";
                     Console.WriteLine($"После изменения названия: {device}");
-                    // device.MAC = "NEW-MAC"; // Ошибка компиляции - MAC readonly
+                    // device.MAC = "NEW-MAC"; 
                     break;
 
                 case 15:
@@ -387,7 +386,7 @@ namespace ConsoleApp6
                     Console.WriteLine(ticket);
                     ticket.Seat = "Партер, ряд 5, место 10";
                     Console.WriteLine($"После изменения места: {ticket}");
-                    // ticket.TicketNumber = "NEW-TICKET"; // Ошибка компиляции - TicketNumber readonly
+                    // ticket.TicketNumber = "NEW-TICKET"; 
                     break;
 
                 default:
