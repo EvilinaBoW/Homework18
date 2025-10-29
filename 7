@@ -11,7 +11,6 @@ namespace ConsoleApp6
         public string Name { get; set; }
         public int Age { get; set; }
 
-        // Конструктор, принимающий имя и возраст
         public Person(string name, int age)
         {
             Name = name;
@@ -26,8 +25,7 @@ namespace ConsoleApp6
         public string ID { get; set; }
         public string Name { get; set; }
         public string Group { get; set; }
-
-        // Конструктор для инициализации ID и имени
+        
         public Student(string id, string name)
         {
             ID = id;
@@ -35,7 +33,6 @@ namespace ConsoleApp6
             Group = "Не назначена";
         }
 
-        // Перегрузка конструктора
         public Student(string id, string name, string group)
         {
             ID = id;
@@ -51,7 +48,6 @@ namespace ConsoleApp6
         public double Length { get; set; }
         public double Width { get; set; }
 
-        // Конструктор для длины и ширины
         public Rectangle(double length, double width)
         {
             Length = length;
@@ -68,7 +64,6 @@ namespace ConsoleApp6
     {
         public double Radius { get; set; }
 
-        // Конструктор для радиуса
         public Circle(double radius)
         {
             Radius = radius;
@@ -87,7 +82,6 @@ namespace ConsoleApp6
         public decimal Balance { get; set; }
         public string Currency { get; set; }
 
-        // Конструктор для номера счёта и начального баланса
         public BankAccount(string accountNumber, decimal initialBalance)
         {
             AccountNumber = accountNumber;
@@ -95,7 +89,6 @@ namespace ConsoleApp6
             Currency = "RUB";
         }
 
-        // Перегрузка конструктора
         public BankAccount(string accountNumber, decimal initialBalance, string currency)
         {
             AccountNumber = accountNumber;
@@ -129,7 +122,6 @@ namespace ConsoleApp6
         public int Year { get; set; }
         public string Color { get; set; }
 
-        // Конструктор для марки, модели и года
         public Car(string brand, string model, int year)
         {
             Brand = brand;
@@ -138,7 +130,6 @@ namespace ConsoleApp6
             Color = "Не указан";
         }
 
-        // Перегрузка конструктора
         public Car(string brand, string model, int year, string color)
         {
             Brand = brand;
@@ -157,7 +148,6 @@ namespace ConsoleApp6
         public int Pages { get; set; }
         public string Genre { get; set; }
 
-        // Конструктор для названия, автора и количества страниц
         public Book(string title, string author, int pages)
         {
             Title = title;
@@ -166,7 +156,6 @@ namespace ConsoleApp6
             Genre = "Не указан";
         }
 
-        // Перегрузка конструктора
         public Book(string title, string author, int pages, string genre)
         {
             Title = title;
@@ -184,7 +173,6 @@ namespace ConsoleApp6
         public decimal Salary { get; set; }
         public string Position { get; set; }
 
-        // Конструктор для имени и зарплаты
         public Employee(string name, decimal salary)
         {
             Name = name;
@@ -192,7 +180,6 @@ namespace ConsoleApp6
             Position = "Сотрудник";
         }
 
-        // Перегрузка конструктора
         public Employee(string name, decimal salary, string position)
         {
             Name = name;
@@ -214,7 +201,6 @@ namespace ConsoleApp6
         public decimal Price { get; set; }
         public string Category { get; set; }
 
-        // Конструктор для названия и цены
         public Product(string name, decimal price)
         {
             Name = name;
@@ -222,7 +208,6 @@ namespace ConsoleApp6
             Category = "Общее";
         }
 
-        // Перегрузка конструктора
         public Product(string name, decimal price, string category)
         {
             Name = name;
@@ -239,15 +224,13 @@ namespace ConsoleApp6
         public int Rooms { get; set; }
         public double Area { get; set; }
 
-        // Конструктор для адреса и количества комнат
         public House(string address, int rooms)
         {
             Address = address;
             Rooms = rooms;
             Area = 0;
         }
-
-        // Перегрузка конструктора
+        
         public House(string address, int rooms, double area)
         {
             Address = address;
@@ -266,7 +249,6 @@ namespace ConsoleApp6
         public double SideB { get; set; }
         public double SideC { get; set; }
 
-        // Конструктор для трёх сторон
         public Triangle(double sideA, double sideB, double sideC)
         {
             SideA = sideA;
@@ -302,7 +284,6 @@ namespace ConsoleApp6
         public int Minutes { get; set; }
         public int Seconds { get; set; }
 
-        // Конструктор для часов, минут и секунд
         public Time(int hours, int minutes, int seconds)
         {
             Hours = hours;
@@ -311,7 +292,6 @@ namespace ConsoleApp6
             Normalize();
         }
 
-        // Перегрузка конструктора только для часов и минут
         public Time(int hours, int minutes) : this(hours, minutes, 0) { }
 
         private void Normalize()
@@ -345,7 +325,6 @@ namespace ConsoleApp6
     {
         public double Celsius { get; set; }
 
-        // Конструктор для значения в Цельсиях
         public Temperature(double celsius)
         {
             Celsius = celsius;
@@ -363,7 +342,6 @@ namespace ConsoleApp6
         public int G { get; set; }
         public int B { get; set; }
 
-        // Вспомогательный метод для ограничения значений (замена Math.Clamp)
         private int Clamp(int value, int min, int max)
         {
             if (value < min) return min;
@@ -371,7 +349,6 @@ namespace ConsoleApp6
             return value;
         }
 
-        // Конструктор для R, G, B компонентов
         public Color(int r, int g, int b)
         {
             R = Clamp(r, 0, 255);
@@ -403,14 +380,12 @@ namespace ConsoleApp6
         public double X { get; set; }
         public double Y { get; set; }
 
-        // Конструктор для координат X и Y
         public Point(double x, double y)
         {
             X = x;
             Y = y;
         }
 
-        // Конструктор для точки в начале координат
         public Point() : this(0, 0) { }
 
         public double DistanceTo(Point other)
