@@ -8,7 +8,7 @@ namespace ConsoleApp6
 {
     class Animal
     {
-        public void MakeSound() => Console.WriteLine("Some sound");
+        public void MakeSound() => Console.WriteLine("[translate:Некоторый звук]");
     }
 
     class Car
@@ -34,7 +34,7 @@ namespace ConsoleApp6
             Name = name;
             Age = age;
         }
-        public override string ToString() => $"Name: {Name}, Age: {Age}";
+        public override string ToString() => $"[translate:Имя]: {Name}, [translate:Возраст]: {Age}";
     }
 
     class Rectangle
@@ -46,7 +46,7 @@ namespace ConsoleApp6
             Width = width;
             Height = height;
         }
-        public override string ToString() => $"Rectangle: {Width} x {Height}";
+        public override string ToString() => $"[translate:Прямоугольник]: {Width} x {Height}";
     }
 
     class Student
@@ -58,7 +58,7 @@ namespace ConsoleApp6
             Name = name;
             Age = age;
         }
-        public override string ToString() => $"Student Name: {Name}, Age: {Age}";
+        public override string ToString() => $"[translate:Студент имя]: {Name}, [translate:Возраст]: {Age}";
     }
 
     class Book
@@ -72,7 +72,7 @@ namespace ConsoleApp6
             Author = author;
             Pages = pages;
         }
-        public override string ToString() => $"{Title} by {Author}, {Pages} pages";
+        public override string ToString() => $"{Title} [translate:автор]: {Author}, {Pages} [translate:страниц]";
     }
 
     class Circle
@@ -83,7 +83,7 @@ namespace ConsoleApp6
             Radius = radius;
         }
         public double Area() => Math.PI * Radius * Radius;
-        public override string ToString() => $"Circle with radius {Radius}";
+        public override string ToString() => $"[translate:Круг с радиусом] {Radius}";
     }
 
     class BankAccount
@@ -101,7 +101,7 @@ namespace ConsoleApp6
         {
             if (amount > 0 && amount <= Balance) Balance -= amount;
         }
-        public override string ToString() => $"Balance: {Balance:C}";
+        public override string ToString() => $"[translate:Баланс]: {Balance:C}";
     }
 
     class Temperature
@@ -142,7 +142,7 @@ namespace ConsoleApp6
             Y = y;
             Z = z;
         }
-        public override string ToString() => $"Point({X}, {Y}, {Z})";
+        public override string ToString() => $"[translate:Точка]({X}, {Y}, {Z})";
     }
 
     class Color
@@ -156,7 +156,7 @@ namespace ConsoleApp6
             G = g;
             B = b;
         }
-        public override string ToString() => $"Color(R={R}, G={G}, B={B})";
+        public override string ToString() => $"[translate:Цвет](R={R}, G={G}, B={B})";
     }
 
     class Email
@@ -166,7 +166,7 @@ namespace ConsoleApp6
         {
             Address = address;
         }
-        public override string ToString() => $"Email: {Address}";
+        public override string ToString() => $"[translate:Электронная почта]: {Address}";
     }
 
     class PhoneNumber
@@ -176,7 +176,7 @@ namespace ConsoleApp6
         {
             Number = number;
         }
-        public override string ToString() => $"Phone Number: {Number}";
+        public override string ToString() => $"[translate:Телефонный номер]: {Number}";
     }
 
     class URL
@@ -193,8 +193,8 @@ namespace ConsoleApp6
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a number between 1 and 15 to create and use a class instance:");
-            Console.WriteLine("1: Animal\n2: Car\n3: Person\n4: Rectangle\n5: Student (class vs object demo)\n6: Book\n7: Circle\n8: BankAccount\n9: Temperature\n10: Time\n11: Point\n12: Color\n13: Email\n14: PhoneNumber\n15: URL");
+            Console.WriteLine("[translate:Введите число от 1 до 15, чтобы создать и использовать экземпляр класса]:");
+            Console.WriteLine("[translate:1: Животное]\n[translate:2: Автомобиль]\n[translate:3: Человек]\n[translate:4: Прямоугольник]\n[translate:5: Студент (демонстрация класса и объекта)]\n[translate:6: Книга]\n[translate:7: Круг]\n[translate:8: Банковский счет]\n[translate:9: Температура]\n[translate:10: Время]\n[translate:11: Точка]\n[translate:12: Цвет]\n[translate:13: Электронная почта]\n[translate:14: Телефонный номер]\n[translate:15: URL]");
 
             int choice = int.Parse(Console.ReadLine() ?? "0");
             switch (choice)
@@ -216,22 +216,19 @@ namespace ConsoleApp6
                     Console.WriteLine(rectangle);
                     break;
                 case 5:
-                    // Difference between class and object demonstration
-                    // Class: Template for creating objects
-                    // Object: Instance of a class
                     var student = new Student("John", 20);
-                    Console.WriteLine("Class definition: Student class defines properties Name and Age.");
-                    Console.WriteLine("Object example: Student object with Name='John' and Age=20 is an instance of this class.");
+                    Console.WriteLine("[translate:Определение класса]: [translate:класс Студент определяет свойства Имя и Возраст].");
+                    Console.WriteLine("[translate:Пример объекта]: [translate:объект Студент с Имя='John' и Возраст=20 является экземпляром этого класса].");
                     Console.WriteLine(student);
                     break;
                 case 6:
-                    var book = new Book("C# Basics", "Jane Doe", 300);
+                    var book = new Book("[translate:C# Основы]", "Jane Doe", 300);
                     Console.WriteLine(book);
                     break;
                 case 7:
                     var circle = new Circle(7);
                     Console.WriteLine(circle);
-                    Console.WriteLine($"Area: {circle.Area():F2}");
+                    Console.WriteLine($"[translate:Площадь]: {circle.Area():F2}");
                     break;
                 case 8:
                     var account = new BankAccount(1000m);
@@ -268,11 +265,11 @@ namespace ConsoleApp6
                     Console.WriteLine(url);
                     break;
                 default:
-                    Console.WriteLine("Invalid choice.");
+                    Console.WriteLine("[translate:Некорректный выбор].");
                     break;
             }
 
-            Console.WriteLine("\nPress any key to exit...");
+            Console.WriteLine("[translate:А нажмите куда-нибудь для выхода]");
             Console.ReadKey();
         }
     }
